@@ -9,7 +9,11 @@ namespace registracia.model
 {
     class DataBase
     {
-        private static string url = @"c:\users\user\source\repos\registracia\registracia\model\UserDB.txt";
+        private static string pathThsFile = ThisPath();
+        private static string url = @"model\UserDB.txt";
+        private static string  ThisPath() {
+            return pathThsFile = Environment.CurrentDirectory + @"/UserDB.txt";
+        }
 
         // Создаем User. Возвращаем Id
         public static string CreateUser(string[] newUser)
@@ -17,7 +21,7 @@ namespace registracia.model
             int userId;
             string line;
             List<string> listIds = new List<string>();
-            using (StreamReader sr = new StreamReader(url))
+            using (StreamReader sr = new StreamReader(pathThsFile))
             {
                 //string idDB = sr.ReadLine();
                 while ((line = sr.ReadLine()) != null)
@@ -31,12 +35,12 @@ namespace registracia.model
 
             string user = $"id={userId}&name={newUser[0]}&email={newUser[1]}&pass={newUser[2]}";
 
-            using (StreamWriter sw = new StreamWriter(url, false))
+            using (StreamWriter sw = new StreamWriter(pathThsFile, false))
             {
                 sw.WriteLine(userId);
             }
 
-            using (StreamWriter sw = new StreamWriter(url, true))
+            using (StreamWriter sw = new StreamWriter(pathThsFile, true))
             {
                 listIds.ForEach((string line1) =>
                 {
@@ -52,7 +56,7 @@ namespace registracia.model
         {
             List<string> lineUser = new List<string>();
             string line;
-            using (StreamReader sw = new StreamReader(url))
+            using (StreamReader sw = new StreamReader(pathThsFile))
             {
                 while ((line = sw.ReadLine()) != null)
                 {
@@ -75,7 +79,7 @@ namespace registracia.model
         {
             List<string> lineUser = new List<string>();
             string line;
-            using (StreamReader sw = new StreamReader(url))
+            using (StreamReader sw = new StreamReader(pathThsFile))
             {
                 while ((line = sw.ReadLine()) != null)
                 {

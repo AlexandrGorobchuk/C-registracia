@@ -19,6 +19,10 @@ namespace registracia
         public MainWindow()
         {
             InitializeComponent();
+
+            SoftWare softWare = new SoftWare();
+            softWare.Show();
+            this.Close();
         }
 
         private void ShowPasword(CheckBox checkBox)
@@ -248,6 +252,9 @@ namespace registracia
                 {
                     User user = new User().NewUser(name, email, pass);
                     MessageBox.Show($"Create User. Id = {user.Id}");
+                    SoftWare softWare = new SoftWare();
+                    softWare.Show();
+                    this.Close();
                 }
                 catch (Exception ex) {
                     MessageBox.Show($"{ex.Message}");
@@ -315,7 +322,10 @@ namespace registracia
                     User user = new User();
                     user.CheckUser(email, pass);
                     MessageBox.Show($"Юзер такой есть, имя его: {user.Name}");
-                    
+                    SoftWare softWare = new SoftWare();
+                    softWare.Show();
+                    this.Close();
+
                 }
                 catch (Exception ex) {
                     MessageBox.Show($"{ex.Message}");
