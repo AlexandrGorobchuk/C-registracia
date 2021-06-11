@@ -1,0 +1,143 @@
+﻿<Window x:Class="registracia.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:registracia"
+        mc:Ignorable="d"
+        Title="MainWindow"
+
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="18"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        AllowsTransparency="True" 
+        Height="900"
+        WindowStyle="None">
+    <Window.Background>
+        <SolidColorBrush Opacity="0.0" Color="White"/>
+    </Window.Background>
+
+    <Grid>
+
+        <materialDesign:Card HorizontalAlignment="Center" VerticalAlignment="Center"  Height="900" Width="600">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="5"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0" HorizontalAlignment="Right" Margin="10 10 10 0"
+                      Style="{StaticResource MaterialDesignIconButton}"
+                      ToolTip="Close programm" Click="Button_Click">
+                    <materialDesign:PackIcon
+                        Kind="Close" />
+                </Button>
+
+
+                <StackPanel x:Name="StackPanelLogIn" Grid.Row="1"  Width="350" VerticalAlignment="Center" HorizontalAlignment="Center" RenderTransformOrigin="23,0">
+
+                    <TextBlock Grid.Column="0" Text="Hello User!" FontSize="64" FontWeight="Bold" Margin="0 30 0 20" TextAlignment="Center" >
+                     
+                        <TextBlock.BindingGroup>
+                            <BindingGroup/>
+                        </TextBlock.BindingGroup>
+                    </TextBlock>
+                    <TextBlock Grid.Column="0" Text="Remember everything important." Margin="0 0 0 0" TextAlignment="Center"/>
+                    <TextBlock x:Name="text_test" Grid.Column="0" Text="{Binding ElementName=User,Path=user}" Margin="0 0 0 50" TextAlignment="Center"/>
+
+                    <TextBox x:Name="LogInEmail" materialDesign:HintAssist.Hint="Enter email adress or username"   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                     />
+                    <PasswordBox 
+                              x:Name="PasswordBox"
+                              materialDesign:HintAssist.Hint="Password"
+                              materialDesign:TextFieldAssist.HasClearButton="True"
+                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" KeyUp="PasswordBox_KeyUp" 
+                        />
+                    <TextBox Name="PasswordUnmask" Visibility="Collapsed" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:HintAssist.Hint="Password"/>
+                    <CheckBox x:Name="CheckBoks_showPasword" Content="Show password" IsEnabled="False" HorizontalAlignment="Right" FontSize="9" Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" Margin="0 5 0 15" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" />
+                    <Button
+                        Click="LogIn"
+                        Margin="0 10 0 0"
+                        Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                        materialDesign:ButtonAssist.CornerRadius="0"
+                        ToolTip="MaterialDesignRaisedButton with Round Corners">
+                        <TextBlock Text="Continue" />
+                    </Button>
+                    <TextBlock FontSize="14" Text="Don't have an account?" HorizontalAlignment="Center" Padding="0 50 0 5 "/>
+                    <Button 
+                          Style="{StaticResource MaterialDesignFlatButton}"
+                          ToolTip="MaterialDesignFlatButton"
+                          
+                          Content="Create account" Click="Create_Accaunt" />
+                </StackPanel>
+
+                <StackPanel x:Name="StackPanelCreateAccount" Grid.Row="1" Margin="600,100,0,0" Width="350" Visibility="Visible">
+
+                    <TextBlock Grid.Column="0" Text="Creating your account!" FontSize="32" FontWeight="Medium" Margin="0 30 0 20" TextAlignment="Center" TextWrapping="WrapWithOverflow"/>
+                    <TextBlock x:Name="h2" Grid.Column="0" Text="Remember everything important." Margin="0 0 0 50" TextAlignment="Center"/>
+
+                    <TextBox x:Name="CreateAccountName" materialDesign:HintAssist.Hint="Enter your name"   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"/>
+                    <TextBox x:Name="CreateAccountEmail" materialDesign:HintAssist.Hint="Enter email adress"   Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                              materialDesign:TextFieldAssist.HasClearButton="True"/>
+                    <PasswordBox 
+                              x:Name="CreateAccountPasswordBox"
+                              materialDesign:HintAssist.Hint="Password"
+                        materialDesign:TextFieldAssist.HasClearButton="True"
+                        materialDesign:HintAssist.HelperText="At least 8 characters"
+                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" 
+                        KeyUp="СCteateAccauntPasswordBox_KeyUp" 
+                        />
+                    <TextBox Name="CreateAccountPasswordUnmask" Visibility="Collapsed" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.HelperText="At least 8 characters"
+                             materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:HintAssist.Hint="Password"/>
+
+                    <PasswordBox Margin="0 0 0 0"
+                              x:Name="RepeatCreateAccountPasswordBox"
+                              materialDesign:HintAssist.Hint="Repeat Password"
+                                materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:HintAssist.HelperText="At least 8 characters"
+                          Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" KeyUp="СCteateAccauntPasswordBox_KeyUp" 
+                        />
+                    <TextBox Name="RepeatCreateAccountPasswordUnmask" Visibility="Collapsed" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             materialDesign:HintAssist.HelperText="At least 8 characters"
+                             materialDesign:TextFieldAssist.HasClearButton="True"
+                              materialDesign:HintAssist.Hint="Repeat Password"/>
+                    <CheckBox x:Name="RepeatCreateAccountCheckBoks_showPasword" Content="Show password" IsEnabled="False" HorizontalAlignment="Right" FontSize="9" Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}" Margin="0 5 0 15" Checked="CreateAccauntCheckBox_Checked" Unchecked="CreateAccauntCheckBox_Unchecked" />
+
+
+                    <Button x:Name="CreatingAccaunt"
+                        Margin="0 10 0 0"
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"                           
+                        materialDesign:ButtonAssist.CornerRadius="0"
+                        ToolTip="MaterialDesignRaisedButton with Round Corners"
+                            Click="CreateNewUser"
+                            >
+                        
+                        <TextBlock Text="Creating" />
+                    </Button>
+                    <TextBlock FontSize="14" Text="Already have an account?" HorizontalAlignment="Center" Padding="0 50 0 5 "/>
+                    <Button
+                          Style="{StaticResource MaterialDesignFlatButton}"
+                          ToolTip="MaterialDesignFlatButton"
+                          Content="Sign in" Click="CreatingAccautn_Sign_in" />
+                </StackPanel>
+                <ProgressBar Grid.Row="2" Name="ProgresBar" Value="100" Height="5"
+                      materialDesign:TransitionAssist.DisableTransitions="True" />    
+            </Grid>
+
+        </materialDesign:Card>
+
+    </Grid>
+</Window>
