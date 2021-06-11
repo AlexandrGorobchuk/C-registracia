@@ -20,8 +20,8 @@ namespace registracia
         {
             InitializeComponent();
 
-            SoftWare softWare = new SoftWare();
-            softWare.Show();
+            SoftWare softWare = new SoftWare(new User(1003, "Aleksandr Gorobchuk", "gorobchuk1211@gmail.com", "g12111989"));
+            softWare.Show(); ;
             this.Close();
         }
 
@@ -252,7 +252,7 @@ namespace registracia
                 {
                     User user = new User().NewUser(name, email, pass);
                     MessageBox.Show($"Create User. Id = {user.Id}");
-                    SoftWare softWare = new SoftWare();
+                    SoftWare softWare = new SoftWare(user);
                     softWare.Show();
                     this.Close();
                 }
@@ -319,10 +319,9 @@ namespace registracia
             {
                 try
                 {
-                    User user = new User();
-                    user.CheckUser(email, pass);
+                    User user = new User().CheckUser(email, pass);
                     MessageBox.Show($"Юзер такой есть, имя его: {user.Name}");
-                    SoftWare softWare = new SoftWare();
+                    SoftWare softWare = new SoftWare(user);
                     softWare.Show();
                     this.Close();
 

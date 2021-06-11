@@ -1,4 +1,5 @@
-﻿using System;
+﻿using registracia.viev;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace registracia
         public SoftWare()
         {
             InitializeComponent();
+        }
+
+        public SoftWare(User User) {
+            InitializeComponent();
+            this.DataContext = User;
         }
     }
 }
