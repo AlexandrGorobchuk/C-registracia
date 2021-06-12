@@ -20,9 +20,9 @@ namespace registracia
         {
             InitializeComponent();
 
-            SoftWare softWare = new SoftWare(new User(1003, "Aleksandr Gorobchuk", "gorobchuk1211@gmail.com", "g12111989"));
-            softWare.Show(); ;
-            this.Close();
+            //SoftWare softWare = new SoftWare(new User(1003, "Aleksandr Gorobchuk", "gorobchuk1211@gmail.com", "g12111989"));
+            //softWare.Show(); ;
+            //this.Close();
         }
 
         private void ShowPasword(CheckBox checkBox)
